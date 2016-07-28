@@ -92,6 +92,10 @@ class DecoratorsTestCase(unittest.TestCase):
         @memoized
         def add(a, b):
             return a + b
+            
+        @memoized
+        def mul(a, b):
+            return a * b
 
         self.assertEqual(add(1, 2), 3)
         self.assertEqual(add(2, 3), 5)
@@ -100,3 +104,7 @@ class DecoratorsTestCase(unittest.TestCase):
         self.assertEqual(add.cache, {(1, 2): 3, (2, 3): 5})
         self.assertEqual(add(3, 4), 7)
         self.assertEqual(add.cache, {(1, 2): 3, (2, 3): 5, (3, 4): 7})
+        self.assertEqual(mul(3, 4), 12)
+        self.assertEqual(mul(2, 3), 6)
+        self.assertEqual(mul.cache, {(3, 4): 12, (2, 3): 6})
+      
